@@ -60,13 +60,13 @@
 		$('#dataGrid').append('<div id="test2"></div>');
 
 		toolbar = new dijit.Toolbar({}, "test2");
-		dojo.forEach([ "上一页", "下一页", "跳页", "跳页1", "跳页2", "跳页3", "跳页4", "跳页5" ], function(label) {
+		dojo.forEach([ "frameworkIconFirst", "frameworkIconPrevious", "frameworkIconNext", "frameworkIconLast", "跳页2", "跳页3", "跳页4", "跳页5" ], function(label) {
 			var button = new dijit.form.Button({
 				// note: should always specify a label, for accessibility reasons.
 				// Just set showLabel=false if you don't want it to be displayed normally
 				label : label,
 				showLabel : true,
-				iconClass : "frameworkIconQuery"
+				iconClass : label
 			});
 			toolbar.addChild(button);
 		});
@@ -78,21 +78,20 @@
 </head>
 
 <body class="${dojoStyle}">
-	<!-- 
-					<div id="toolbar" data-dojo-type="dijit/Toolbar">
-						<div data-dojo-type="dijit/form/Button" id="executeSync"
-							data-dojo-props="iconClass:'frameworkIconSync', showLabel:true">同步</div>
-						<span data-dojo-type="dijit/ToolbarSeparator"></span>
-						<div data-dojo-type="dijit/form/Button" id="executeQuery"
-							data-dojo-props="iconClass:'frameworkIconQuery', showLabel:true">查询</div>
-						<span data-dojo-type="dijit/ToolbarSeparator"></span>
-						<div data-dojo-type="dijit/form/Button" id="executeInsert"
-							data-dojo-props="iconClass:'frameworkIconInsert', showLabel:true">新增</div>
-						<div data-dojo-type="dijit/form/Button" id="executeUpdate"
-							data-dojo-props="iconClass:'frameworkIconUpdate', showLabel:true">修改</div>
-						<div data-dojo-type="dijit/form/Button" id="executeDelete"
-							data-dojo-props="iconClass:'frameworkIconDelete', showLabel:true">删除</div>
-					</div> -->
+	<div id="toolbar" data-dojo-type="dijit/Toolbar">
+		<div data-dojo-type="dijit/form/Button" id="executeSync"
+			data-dojo-props="iconClass:'frameworkIconSync', showLabel:true">同步</div>
+		<span data-dojo-type="dijit/ToolbarSeparator"></span>
+		<div data-dojo-type="dijit/form/Button" id="executeQuery"
+			data-dojo-props="iconClass:'frameworkIconQuery', showLabel:true">查询</div>
+		<span data-dojo-type="dijit/ToolbarSeparator"></span>
+		<div data-dojo-type="dijit/form/Button" id="executeInsert"
+			data-dojo-props="iconClass:'frameworkIconInsert', showLabel:true">新增</div>
+		<div data-dojo-type="dijit/form/Button" id="executeUpdate"
+			data-dojo-props="iconClass:'frameworkIconUpdate', showLabel:true">修改</div>
+		<div data-dojo-type="dijit/form/Button" id="executeDelete"
+			data-dojo-props="iconClass:'frameworkIconDelete', showLabel:true">删除</div>
+	</div>
 	<table id="dataGrid" data-dojo-type="dojox/grid/DataGrid"
 		data-dojo-props="autoHeight:true, autoWidth:true">
 		<thead>

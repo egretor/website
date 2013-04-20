@@ -67,3 +67,31 @@
 	width: 16px;
 	height: 16px;
 }
+
+.frameworkIconFirst {
+	background-image: url("image/icon/first.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.frameworkIconPrevious {
+	background-image: url("image/icon/previous.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.frameworkIconNext {
+	background-image: url("image/icon/next.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.frameworkIconLast {
+	background-image: url("image/icon/last.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}
