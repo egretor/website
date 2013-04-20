@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-4-20 9:49:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.com.ufgov.hainan.manage.module.ManageModuleFunction" table="MANAGE_MODULE_FUNCTION">
+        <id name="uuid" type="java.lang.String">
+            <column name="UUID" length="32" />
+            <generator class="uuid.hex" />
+        </id>
+        <many-to-one name="manageModule" class="cn.com.ufgov.hainan.manage.module.ManageModule" fetch="select">
+            <column name="MODULE_ID" length="32" not-null="true"></column>
+        </many-to-one>
+        <many-to-one name="manageFunction" class="cn.com.ufgov.hainan.manage.module.ManageFunction" fetch="select">
+            <column name="FUNCTION_ID" length="32" not-null="true"></column>
+        </many-to-one>
+        <property name="insertUserId" type="java.lang.String">
+            <column name="INSERT_USER_ID" length="32" not-null="true"></column>
+        </property>
+        <property name="insertTime" type="java.util.Calendar">
+            <column name="INSERT_TIME" not-null="true"></column>
+        </property>
+        <property name="updateUserId" type="java.lang.String">
+            <column name="UPDATE_USER_ID" length="32" not-null="true"></column>
+        </property>
+        <property name="updateTime" type="java.util.Calendar">
+            <column name="UPDATE_TIME" not-null="true"></column>
+        </property>
+        <property name="remark" type="java.lang.String">
+            <column name="REMARK"></column>
+        </property>
+    </class>
+</hibernate-mapping>

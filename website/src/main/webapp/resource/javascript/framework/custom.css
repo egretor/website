@@ -1,0 +1,69 @@
+.frameworkIconHome {
+	background-image: url("image/icon/home.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.frameworkIconDisableLeft {
+	background-image: url("image/icon/disableLeft.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.frameworkIconDisableTop {
+	background-image: url("image/icon/disableTop.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.frameworkIconEnableLeft {
+	background-image: url("image/icon/enableLeft.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.frameworkIconEnableTop {
+	background-image: url("image/icon/enableTop.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.frameworkIconSync {
+	background-image: url("image/icon/sync.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.frameworkIconQuery {
+	background-image: url("image/icon/query.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.frameworkIconInsert {
+	background-image: url("image/icon/insert.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.frameworkIconUpdate {
+	background-image: url("image/icon/update.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.frameworkIconDelete {
+	background-image: url("image/icon/delete.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}

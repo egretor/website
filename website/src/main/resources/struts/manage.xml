@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="manage" extends="website-default" namespace="/manage">
+		<action name="everyone"
+			class="cn.com.ufgov.hainan.manage.action.ManageEveryoneAction">
+			<result name="login">/manage/everyone/login.jsp</result>
+			<result name="logout">/manage/everyone/logout.jsp</result>
+			<result name="success" type="redirectAction">layout.action</result>
+		</action>
+
+		<action name="layout"
+			class="cn.com.ufgov.hainan.manage.action.ManageLayoutAction">
+			<result name="success">/manage/layout/index.jsp</result>
+		</action>
+
+		<action name="home"
+			class="cn.com.ufgov.hainan.manage.action.ManageHomeAction">
+			<result name="success">/manage/home/index.jsp</result>
+		</action>
+
+		<action name="catalog"
+			class="cn.com.ufgov.hainan.manage.action.ManageCatalogAction">
+			<result name="success">/manage/catalog/index.jsp</result>
+		</action>
+
+		<action name="user"
+			class="cn.com.ufgov.hainan.manage.action.ManageUserAction">
+			<result name="success">/manage/user/index.jsp</result>
+		</action>
+	</package>
+</struts>
+

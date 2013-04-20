@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	default-autowire="byName" default-lazy-init="false">
+
+	<bean id="permissionService" class="cn.com.ufgov.hainan.manage.business.PermissionBusiness"></bean>
+	
+	<bean id="manageEveryoneService" class="cn.com.ufgov.hainan.manage.business.ManageEveryoneBusiness"></bean>
+	<bean id="manageLayoutService" class="cn.com.ufgov.hainan.manage.business.ManageLayoutBusiness"></bean>
+
+	<bean id="manageUserService" class="cn.com.ufgov.hainan.manage.business.ManageUserBusiness"></bean>
+
+	<bean id="manageFunctionService"
+		class="cn.com.ufgov.hainan.manage.business.ManageFunctionBusiness"></bean>
+
+	<bean id="manageModuleService"
+		class="cn.com.ufgov.hainan.manage.business.ManageModuleBusiness"></bean>
+	<bean id="manageModuleFunctionService"
+		class="cn.com.ufgov.hainan.manage.business.ManageModuleFunctionBusiness"></bean>
+
+	<bean id="manageCatalogService"
+		class="cn.com.ufgov.hainan.manage.business.ManageCatalogBusiness"></bean>
+	<bean id="manageMenuService" class="cn.com.ufgov.hainan.manage.business.ManageMenuBusiness"></bean>
+	<bean id="manageLinkService" class="cn.com.ufgov.hainan.manage.business.ManageLinkBusiness"></bean>
+
+	<bean id="manageGroupService" class="cn.com.ufgov.hainan.manage.business.ManageGroupBusiness"></bean>
+	<bean id="manageGroupUserService"
+		class="cn.com.ufgov.hainan.manage.business.ManageGroupUserBusiness"></bean>
+	<bean id="manageGroupModuleService"
+		class="cn.com.ufgov.hainan.manage.business.ManageGroupModuleBusiness"></bean>
+	<bean id="manageGroupLinkService"
+		class="cn.com.ufgov.hainan.manage.business.ManageGroupLinkBusiness"></bean>
+</beans>

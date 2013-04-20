@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<type-mapping>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="java.lang.String"
+			length="32" not-null="true">
+		</sql-type>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="java.lang.String"
+			length="32" not-null="false">
+		</sql-type>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="java.lang.String"
+			length="32">
+		</sql-type>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="java.lang.String"
+			length="1000" not-null="true">
+		</sql-type>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="java.lang.String"
+			length="1000" not-null="false">
+		</sql-type>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="java.lang.String"
+			length="1000">
+		</sql-type>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="java.lang.String"
+			length="4000" not-null="true">
+		</sql-type>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="java.lang.String"
+			length="4000" not-null="false">
+		</sql-type>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="java.lang.String"
+			length="4000">
+		</sql-type>
+		<sql-type jdbc-type="CLOB" hibernate-type="java.lang.String"
+			not-null="true">
+		</sql-type>
+
+		<sql-type jdbc-type="CLOB" hibernate-type="java.lang.String"
+			not-null="false">
+		</sql-type>
+		<sql-type jdbc-type="CLOB" hibernate-type="java.lang.String"></sql-type>
+		<sql-type jdbc-type="OTHER" hibernate-type='java.util.Calendar'
+			not-null="true">
+		</sql-type>
+		<sql-type jdbc-type="OTHER" hibernate-type='java.util.Calendar'
+			not-null="false">
+		</sql-type>
+		<sql-type jdbc-type="OTHER"
+			hibernate-type='java.util.Calendar'>
+		</sql-type>
+		<sql-type jdbc-type="NUMERIC" hibernate-type="boolean"
+			precision="1" not-null="true">
+		</sql-type>
+		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Boolean"
+			precision="1" not-null="false">
+		</sql-type>
+		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Boolean"
+			precision="1">
+		</sql-type>
+		<sql-type jdbc-type="NUMERIC" hibernate-type="int"
+			precision="16" not-null="true">
+		</sql-type>
+		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Integer"
+			precision="16" not-null="false">
+		</sql-type>
+		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Integer"
+			precision="16">
+		</sql-type>
+		<sql-type jdbc-type="NUMERIC" hibernate-type="long"
+			precision="32" not-null="true">
+		</sql-type>
+		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Long"
+			precision="32" not-null="false">
+		</sql-type>
+		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Long"
+			precision="32">
+		</sql-type>
+		<sql-type jdbc-type="NUMERIC" hibernate-type="double"
+			precision="29" not-null="true" scale="9">
+		</sql-type>
+		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Double"
+			precision="29" not-null="false" scale="9">
+		</sql-type>
+		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Double"
+			precision="29" scale="9">
+		</sql-type>
+	</type-mapping>
+	<table-filter match-name="MANAGE_CATALOG"></table-filter>
+	<table-filter match-name="MANAGE_FUNCTION"></table-filter>
+	<table-filter match-name="MANAGE_GROUP"></table-filter>
+	<table-filter match-name="MANAGE_GROUP_LINK"></table-filter>
+	<table-filter match-name="MANAGE_GROUP_MODULE"></table-filter>
+	<table-filter match-name="MANAGE_GROUP_USER"></table-filter>
+	<table-filter match-name="MANAGE_LINK"></table-filter>
+	<table-filter match-name="MANAGE_MENU"></table-filter>
+	<table-filter match-name="MANAGE_MODULE"></table-filter>
+	<table-filter match-name="MANAGE_MODULE_FUNCTION"></table-filter>
+	<table-filter match-name="MANAGE_USER"></table-filter>
+</hibernate-reverse-engineering>
