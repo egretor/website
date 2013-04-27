@@ -88,7 +88,7 @@ public interface ModuleService<T> {
 	 *            级联操作
 	 * @return 操作结果
 	 */
-	ResultType delete(T value, boolean cascade);
+	ResultType delete(String uuid, boolean cascade);
 
 	/**
 	 * 删除
@@ -97,7 +97,7 @@ public interface ModuleService<T> {
 	 *            模块数据
 	 * @return 操作结果
 	 */
-	ResultType delete(T value);
+	ResultType delete(String uuid);
 
 	/**
 	 * 是否存在相同数据
@@ -115,7 +115,7 @@ public interface ModuleService<T> {
 	 *            模块数据
 	 * @return 结果
 	 */
-	boolean hasReference(T value);
+	boolean hasReference(String uuid);
 
 	/**
 	 * 删除被引用数据
@@ -124,5 +124,5 @@ public interface ModuleService<T> {
 	 *            模块数据
 	 * @return 结果
 	 */
-	boolean deleteReference(T value);
+	boolean deleteReference(String uuid);
 }

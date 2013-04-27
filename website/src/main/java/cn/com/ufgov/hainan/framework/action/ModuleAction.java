@@ -17,6 +17,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.apache.struts2.util.ServletContextAware;
 
 import cn.com.ufgov.hainan.framework.business.Paging;
+import cn.com.ufgov.hainan.framework.business.ResultType;
 import cn.com.ufgov.hainan.framework.module.DojoDataGrid;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -137,6 +138,7 @@ public abstract class ModuleAction implements ServletContextAware, ApplicationAw
 	 * Dojo数据表格
 	 */
 	protected DojoDataGrid dojoDataGrid;
+	protected String message;
 
 	@Override
 	public void setServletContext(ServletContext servletContext) {
@@ -192,5 +194,41 @@ public abstract class ModuleAction implements ServletContextAware, ApplicationAw
 
 	public void setDojoDataGrid(DojoDataGrid dojoDataGrid) {
 		this.dojoDataGrid = dojoDataGrid;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public void removeNullBooleanParameter(String key) {
+		Object value = this.strutsParameters.get(key);
+		if (value != null) {
+			String[] values = (String[]) value;
+
+			if ((values.length == 0) || (values[0].isEmpty())) {
+				this.strutsParameters.remove(key);
+			}
+		}
+	}
+
+	public void processMessage(ResultType resultType) {
+		switch (resultType) {
+		case HAS_SAME:
+			this.setMessage("存在相同的数据！");
+			break;
+		case HAS_REFERENCE:
+			this.setMessage("存在被引用的数据！");
+			break;
+		case SUCCESS:
+			this.setMessage("数据操作成功！");
+			break;
+		case FAIL:
+			this.setMessage("数据操作失败！");
+			break;
+		}
 	}
 }

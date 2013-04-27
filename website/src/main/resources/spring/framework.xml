@@ -7,6 +7,10 @@
       http://www.springframework.org/schema/context/spring-context-3.0.xsd"
 	default-autowire="byName" default-lazy-init="false">
 
-	<bean id="paging" class="cn.com.ufgov.hainan.framework.business.Paging"></bean>
+	<bean id="paging" class="cn.com.ufgov.hainan.framework.business.Paging">
+		<property name="rowsPerPage">
+			<value>10</value>
+		</property>
+	</bean>
 	<bean id="dojoDataGrid" class="cn.com.ufgov.hainan.framework.module.DojoDataGrid"></bean>
 </beans>

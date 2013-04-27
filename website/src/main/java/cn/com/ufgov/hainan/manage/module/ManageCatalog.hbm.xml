@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2013-4-20 9:49:36 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2013-4-26 9:38:34 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="cn.com.ufgov.hainan.manage.module.ManageCatalog" table="MANAGE_CATALOG">
         <id name="uuid" type="java.lang.String">
@@ -26,7 +26,7 @@
         <property name="name" type="java.lang.String">
             <column name="NAME" length="4000" not-null="true" unique="true"></column>
         </property>
-        <property name="serial" type="long">
+        <property name="serial" type="java.lang.Long">
             <column name="SERIAL" precision="32" scale="0" not-null="true"></column>
         </property>
         <set name="manageMenus" inverse="true" lazy="true" table="MANAGE_MENU" fetch="select">

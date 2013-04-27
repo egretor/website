@@ -61,7 +61,7 @@ public class ManageLayoutBusiness implements ManageLayoutService {
 				results.addAll(manageCatalogs);
 			}
 
-			if (manageUser.isPrerogative()) {
+			if (manageUser.getPrerogative()) {
 				ManageCatalog developManageCatalog = new ManageCatalog();
 
 				developManageCatalog.setUuid(ManageLayoutBusiness.DEVELOP_CATALOG_ID);
@@ -133,7 +133,7 @@ public class ManageLayoutBusiness implements ManageLayoutService {
 		ManageUser manageUser = this.manageUserService.select(userId);
 		if (manageUser != null) {
 
-			if (manageUser.isPrerogative()) {
+			if (manageUser.getPrerogative()) {
 				if (ManageLayoutBusiness.DEVELOP_CATALOG_ID.equals(catalogId)) {
 					List<ManageMenu> developManageMenus = this.queryDevelopManageMenus();
 					if (developManageMenus != null) {

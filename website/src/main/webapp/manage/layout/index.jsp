@@ -10,7 +10,7 @@
 html,body {
 	width: 100%;
 	height: 100%;
-	margin: 0;
+	margin: 0px;
 	overflow: hidden;
 }
 
@@ -18,11 +18,25 @@ html,body {
 	width: 100%;
 	height: 100%;
 }
+
+.linkButton {
+	cursor: pointer;
+}
+
+.catalogButton .dijitButtonNode {
+	width: 80px;
+}
+
+#layoutDialog .dijitDialogPaneContent {
+	margin: 0px;
+	padding: 0px;
+}
 </style>
 <%@ include file="/framework/resource/global.jsp"%>
 <script type="text/javascript">
 	dojo.ready(function() {
 		framework.layout = {
+			currentTab : null,
 			leftZoom : function() {
 				var button = dijit.byId('leftZoom');
 				var iconClass = button.attr('iconClass');
@@ -52,30 +66,31 @@ html,body {
 				dijit.byId('borderContainer').layout();
 			},
 			clickHomeCatalog : function() {
-				var id = $('#homeCatalog');
-				var name = '首页';
-				var url = framework.websiteRoot + '/manage/home.action';
+				var id = $('#homeCatalog').attr('id');
+				var name = framework.local.LAYOUT_HOME;
+				var url = framework.format.concat('[1][2]', framework.websiteRoot, '/manage/home.action');
 
 				framework.layout.openTab(id, name, url, false);
 			},
 			clickExitCatalog : function() {
-				window.location.href = framework.websiteRoot + '/manage/everyone!executeLogout.action';
+				window.location.href = framework.format.concat('[1][2]', framework.websiteRoot, '/manage/everyone!executeLogout.action');
 			},
 			openTab : function(id, name, url, closable) {
 				id += 'Tab';
 				var tabContainer = dijit.byId('layoutCenter');
-				var currentTab = dijit.byId(id);
-				if (!currentTab) {
-					currentTab = new dijit.layout.ContentPane({
+				this.currentTab = dijit.byId(id);
+				if (!this.currentTab) {
+					this.currentTab = new dijit.layout.ContentPane({
 						id : id,
 						title : name,
 						closable : closable,
 						style : 'overflow: hidden; margin: 0px; padding: 0px',
-						content : '<iframe src="' + url + '" style="width: 100%; height: 100%" frameborder="0"></iframe>'
+						content : framework.format.concat('<iframe name="[1]" src="[2]" style="width: 100%; height: 100%" frameborder="0"></iframe>', id, url)
 					});
-					tabContainer.addChild(currentTab);
+					tabContainer.addChild(this.currentTab);
 				}
-				tabContainer.selectChild(currentTab);
+
+				tabContainer.selectChild(this.currentTab);
 			},
 			clickLink : function() {
 				var linkId = this.id;
@@ -87,7 +102,7 @@ html,body {
 			clickCatalog : function() {
 				var catalogId = this.id;
 				$.ajax({
-					url : '${websiteRoot}/manage/layout!executeQueryMenus.action',
+					url : framework.format.concat('[1][2]', framework.websiteRoot, '/manage/layout!executeQueryMenus.action'),
 					type : 'POST',
 					data : {
 						catalogId : catalogId
@@ -114,7 +129,7 @@ html,body {
 									});
 
 									dojo.forEach(manageMenu.manageLinks, function(manageLink) {
-										linkContent += '<div id="' + manageLink.uuid + '" class="linkButton" href="' + framework.websiteRoot + manageLink.url + '">' + manageLink.name + '</div><br />';
+										linkContent += framework.format.concat('<div id="[1]" class="linkButton" href="[2][3]">[4]</div><br />', manageLink.uuid, framework.websiteRoot, manageLink.url, manageLink.name);
 									});
 								}
 
@@ -134,7 +149,7 @@ html,body {
 			},
 			queryCatalogs : function() {
 				$.ajax({
-					url : '${websiteRoot}/manage/layout!executeQueryCatalogs.action',
+					url : framework.format.concat('[1][2]', framework.websiteRoot, '/manage/layout!executeQueryCatalogs.action'),
 					type : 'POST',
 					dataType : 'json'
 				}).done(function(data) {
@@ -146,30 +161,62 @@ html,body {
 								dojo.create('button', {
 									innerHTML : manageCatalog.name,
 									id : manageCatalog.uuid
-								}, dojo.byId('layoutCatalog'));
-								new dijit.form.Button({}, dojo.byId(manageCatalog.uuid));
 
-								$('#' + manageCatalog.uuid).addClass('catalogButton');
-								$('.catalogButton').click(framework.layout.clickCatalog);
+								}, dojo.byId('layoutCatalog'));
+								new dijit.form.Button({
+									class : 'catalogButton'
+								}, dojo.byId(manageCatalog.uuid));
+
+								framework.utility.$(manageCatalog.uuid).click(framework.layout.clickCatalog);
 
 								if (firstCatalog) {
 									firstCatalog = false;
-									$('#' + manageCatalog.uuid).trigger('click');
+									framework.utility.$(manageCatalog.uuid).trigger('click');
 								}
 							});
 						}
 					}
 				});
+			},
+			refreshDialog : function(title, url) {
+				framework.utility.dojo('layoutDialog').attr('title', title + this.currentTab.id);
+				framework.utility.$('layoutDialogIframe').attr('src', url);
+
+				dojo.connect(framework.utility.dojo('layoutDialog'), 'onShow', function() {
+					var width = parseInt(parseInt($('#borderContainer').css('width')) * 0.8);
+					var height = parseInt(parseInt($('#borderContainer').css('height')) * 0.8);
+
+					$('#layoutDialogIframe').css('width', width);
+					$('#layoutDialogIframe').css('height', height);
+				});
+
+				$(window).resize(function() {
+					if (framework.utility.dojo('layoutDialog').open) {
+						var width = parseInt(parseInt($('#borderContainer').css('width')) * 0.8);
+						var height = parseInt(parseInt($('#borderContainer').css('height')) * 0.8);
+
+						/*
+						$('#layoutDialogIframe').css('width', width);
+						$('#layoutDialogIframe').css('height', height);
+						*/
+						framework.utility.dojo('layoutDialog').resize(null, framework.format.concat('{w:[1], h:[2]}', width, height));
+					}
+				});
+
+				framework.utility.dojo('layoutDialog').show();
+			},
+			closeDialog : function() {
+				framework.utility.dojo('layoutDialog').hide();
 			}
 		};
 
 		$('#leftZoom').click(framework.layout.leftZoom);
-
 		$('#topZoom').click(framework.layout.topZoom);
-
 		$('#homeCatalog').click(framework.layout.clickHomeCatalog);
-
 		$('#exitCatalog').click(framework.layout.clickExitCatalog);
+
+		$('#homeCatalog').text(framework.local.LAYOUT_HOME);
+		$('#exitCatalog').text(framework.local.LAYOUT_EXIT);
 
 		framework.layout.queryCatalogs();
 		framework.layout.clickHomeCatalog();
@@ -192,10 +239,10 @@ html,body {
 					<tr style="height: 30px">
 						<td style="text-align: right">
 							<button id="homeCatalog" data-dojo-type="dijit/form/Button"
-								data-dojo-props="iconClass:'frameworkIconHome'" type="button">首页</button>
-							<span id="layoutCatalog"></span>
+								data-dojo-props="iconClass:'frameworkIconHome'" type="button"
+								class="catalogButton"></button> <span id="layoutCatalog"></span>
 							<button id="exitCatalog" data-dojo-type="dijit/form/Button"
-								type="button">退出</button>
+								type="button" class="catalogButton"></button>
 						</td>
 						<td style="width: 50px"></td>
 					</tr>
@@ -231,6 +278,11 @@ html,body {
 				<div data-dojo-type="dijit/form/Button" id="topZoom"
 					data-dojo-props="iconClass:'frameworkIconDisableTop', showLabel:false"></div>
 			</div>
+		</div>
+
+		<div id="layoutDialog" data-dojo-type="dijit/Dialog" title="">
+			<iframe id="layoutDialogIframe" frameborder="0"
+				style="width: 100%; height: 100%"></iframe>
 		</div>
 </body>
 </html>

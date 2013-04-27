@@ -12,12 +12,12 @@ public class ManageGroupLinkBusiness extends ModuleBusiness<ManageGroupLink> imp
 	}
 
 	@Override
-	public boolean hasReference(ManageGroupLink value) {
+	public boolean hasReference(String uuid) {
 		return false;
 	}
 
 	@Override
-	public boolean deleteReference(ManageGroupLink value) {
+	public boolean deleteReference(String uuid) {
 		return false;
 	}
 

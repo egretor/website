@@ -95,3 +95,44 @@
 	width: 16px;
 	height: 16px;
 }
+
+.frameworkIconJump {
+	background-image: url("image/icon/jump.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+.frameworkPageCurrentIndex {
+	min-width: 64px;
+}
+
+.frameworkPageIndex {
+	text-decoration: underline;
+	min-width: 64px;
+}
+
+.frameworkForm {
+	min-width: 320px;
+}
+
+.frameworkForm .dijitTextBox {
+	width: 160px;
+}
+
+.frameworkForm .dijitTextArea {
+	width: 160px;
+	padding: 0px;
+}
+
+.frameworkForm .dijitSelect .dijitButtonContents {
+	width: 138px;
+}
+
+.frameworkForm .dijitSelect .dijitButtonNode {
+	width: 18px;
+}
+
+.frameworkForm .dijitButtonNode {
+	width: 80px;
+}

@@ -27,7 +27,8 @@
 
 <script type="text/javascript">
 	dojoConfig = {
-		parseOnLoad : true
+		parseOnLoad : true,
+		isDebug : false
 	};
 </script>
 
@@ -37,6 +38,7 @@
 <script type="text/javascript">
 	dojo.require('dojo.data.ItemFileReadStore');
 	dojo.require('dojo.parser');
+	dojo.require('dijit.form.NumberSpinner');
 	dojo.require('dijit.layout.AccordionContainer');
 	dojo.require('dijit.layout.ContentPane');
 	dojo.require('dijit.layout.BorderContainer');
@@ -44,5 +46,6 @@
 	dojo.require('dijit.registry');
 	dojo.require('dijit.Dialog');
 	dojo.require('dijit.Toolbar');
+	dojo.require('dojox.layout.TableContainer');
 	dojo.require('dojox.grid.DataGrid');
 </script>

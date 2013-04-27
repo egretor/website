@@ -14,12 +14,12 @@ public class ManageCatalogBusiness extends ModuleBusiness<ManageCatalog> impleme
 	}
 
 	@Override
-	public boolean hasReference(ManageCatalog value) {
+	public boolean hasReference(String uuid) {
 		return false;
 	}
 
 	@Override
-	public boolean deleteReference(ManageCatalog value) {
+	public boolean deleteReference(String uuid) {
 		return false;
 	}
 

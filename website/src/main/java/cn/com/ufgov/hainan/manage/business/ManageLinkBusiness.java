@@ -12,12 +12,12 @@ public class ManageLinkBusiness extends ModuleBusiness<ManageLink> implements Ma
 	}
 
 	@Override
-	public boolean hasReference(ManageLink value) {
+	public boolean hasReference(String uuid) {
 		return false;
 	}
 
 	@Override
-	public boolean deleteReference(ManageLink value) {
+	public boolean deleteReference(String uuid) {
 		return false;
 	}
 

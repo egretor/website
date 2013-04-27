@@ -12,12 +12,12 @@ public class ManageFunctionBusiness extends ModuleBusiness<ManageFunction> imple
 	}
 
 	@Override
-	public boolean hasReference(ManageFunction value) {
+	public boolean hasReference(String uuid) {
 		return false;
 	}
 
 	@Override
-	public boolean deleteReference(ManageFunction value) {
+	public boolean deleteReference(String uuid) {
 		return false;
 	}
 

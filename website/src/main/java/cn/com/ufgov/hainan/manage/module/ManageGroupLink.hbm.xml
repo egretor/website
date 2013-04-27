@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2013-4-20 9:49:36 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2013-4-26 9:38:34 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="cn.com.ufgov.hainan.manage.module.ManageGroupLink" table="MANAGE_GROUP_LINK">
         <id name="uuid" type="java.lang.String">

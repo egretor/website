@@ -64,12 +64,15 @@ public class Paging {
 	 * @return 总页数
 	 */
 	public int getPageCount() {
-		int result = 1;
+		int result = Paging.MINIMUM_PAGE;
 
 		result = this.rowCount / this.rowsPerPage;
 		int remainder = this.rowCount % this.rowsPerPage;
 		if (remainder > 0) {
 			result++;
+		}
+		if (result < Paging.MINIMUM_PAGE) {
+			result = Paging.MINIMUM_PAGE;
 		}
 
 		return result;

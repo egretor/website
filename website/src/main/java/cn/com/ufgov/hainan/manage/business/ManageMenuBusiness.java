@@ -12,12 +12,12 @@ public class ManageMenuBusiness extends ModuleBusiness<ManageMenu> implements Ma
 	}
 
 	@Override
-	public boolean hasReference(ManageMenu value) {
+	public boolean hasReference(String uuid) {
 		return false;
 	}
 
 	@Override
-	public boolean deleteReference(ManageMenu value) {
+	public boolean deleteReference(String uuid) {
 		return false;
 	}
 

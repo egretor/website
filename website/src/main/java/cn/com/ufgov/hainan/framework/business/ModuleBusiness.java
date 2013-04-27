@@ -225,29 +225,35 @@ public abstract class ModuleBusiness<T> implements ModuleService<T> {
 	}
 
 	@Override
-	public ResultType delete(T value, boolean cascade) {
+	public ResultType delete(String uuid, boolean cascade) {
 		ResultType result = ResultType.FAIL;
 
-		boolean interrupt = this.hasReference(value);
+		boolean interrupt = true;
+		boolean hasReference = this.hasReference(uuid);
 
-		if (interrupt) {
+		if (hasReference) {
 			result = ResultType.HAS_REFERENCE;
 			if (cascade) {
-				boolean done = this.deleteReference(value);
-				if (done) {
-					Session session = this.sessionFactory.openSession();
-					Transaction transaction = session.beginTransaction();
-					try {
-						transaction.begin();
-						session.delete(value);
-						result = ResultType.SUCCESS;
-					} catch (HibernateException e) {
-						Trace.getLogger().error(e);
-						transaction.rollback();
-					} finally {
-						transaction.commit();
-					}
-				}
+				interrupt = !this.deleteReference(uuid);
+			}
+		} else {
+			interrupt = false;
+		}
+
+		if (!interrupt) {
+			Session session = this.sessionFactory.openSession();
+			Transaction transaction = session.beginTransaction();
+			try {
+				transaction.begin();
+				Class<?> type = this.getGenerics();
+				Object value = session.load(type, uuid);
+				session.delete(value);
+				result = ResultType.SUCCESS;
+			} catch (HibernateException e) {
+				Trace.getLogger().error(e);
+				transaction.rollback();
+			} finally {
+				transaction.commit();
 			}
 		}
 
@@ -255,7 +261,7 @@ public abstract class ModuleBusiness<T> implements ModuleService<T> {
 	}
 
 	@Override
-	public ResultType delete(T value) {
-		return this.delete(value, false);
+	public ResultType delete(String uuid) {
+		return this.delete(uuid, false);
 	}
 }

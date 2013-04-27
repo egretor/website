@@ -12,12 +12,12 @@ public class ManageModuleFunctionBusiness extends ModuleBusiness<ManageModuleFun
 	}
 
 	@Override
-	public boolean hasReference(ManageModuleFunction value) {
+	public boolean hasReference(String uuid) {
 		return false;
 	}
 
 	@Override
-	public boolean deleteReference(ManageModuleFunction value) {
+	public boolean deleteReference(String uuid) {
 		return false;
 	}
 

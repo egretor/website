@@ -9,8 +9,8 @@
 <%@ include file="/framework/resource/javascript.jsp"%>
 <script type="text/javascript">
 	$(document).ready(function() {
-		var url = '${websiteRoot}/manage/everyone!executeLogin.action';
-
+		var url = framework.format.concat('[1][2]', framework.websiteRoot, '/manage/everyone!executeLogin.action');
+		
 		framework.top.location = url;
 	});
 </script>

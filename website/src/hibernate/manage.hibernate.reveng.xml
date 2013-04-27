@@ -47,7 +47,7 @@
 		<sql-type jdbc-type="OTHER"
 			hibernate-type='java.util.Calendar'>
 		</sql-type>
-		<sql-type jdbc-type="NUMERIC" hibernate-type="boolean"
+		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Boolean"
 			precision="1" not-null="true">
 		</sql-type>
 		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Boolean"
@@ -56,7 +56,7 @@
 		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Boolean"
 			precision="1">
 		</sql-type>
-		<sql-type jdbc-type="NUMERIC" hibernate-type="int"
+		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Integer"
 			precision="16" not-null="true">
 		</sql-type>
 		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Integer"
@@ -65,7 +65,7 @@
 		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Integer"
 			precision="16">
 		</sql-type>
-		<sql-type jdbc-type="NUMERIC" hibernate-type="long"
+		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Long"
 			precision="32" not-null="true">
 		</sql-type>
 		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Long"
@@ -74,7 +74,7 @@
 		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Long"
 			precision="32">
 		</sql-type>
-		<sql-type jdbc-type="NUMERIC" hibernate-type="double"
+		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Double"
 			precision="29" not-null="true" scale="9">
 		</sql-type>
 		<sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Double"

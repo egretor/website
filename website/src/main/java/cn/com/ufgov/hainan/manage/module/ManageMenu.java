@@ -1,6 +1,6 @@
 package cn.com.ufgov.hainan.manage.module;
 
-// Generated 2013-4-20 9:49:36 by Hibernate Tools 3.4.0.CR1
+// Generated 2013-4-26 9:38:33 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Calendar;
 import java.util.HashSet;
@@ -20,7 +20,7 @@ public class ManageMenu implements java.io.Serializable {
 	private Calendar updateTime;
 	private String remark;
 	private String name;
-	private long serial;
+	private Long serial;
 	private Set<ManageLink> manageLinks = new HashSet<ManageLink>(0);
 
 	public String getUuid() {
@@ -87,11 +87,11 @@ public class ManageMenu implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public long getSerial() {
+	public Long getSerial() {
 		return this.serial;
 	}
 
-	public void setSerial(long serial) {
+	public void setSerial(Long serial) {
 		this.serial = serial;
 	}
 

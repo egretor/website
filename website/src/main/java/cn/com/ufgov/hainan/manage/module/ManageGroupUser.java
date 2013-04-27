@@ -1,6 +1,6 @@
 package cn.com.ufgov.hainan.manage.module;
 
-// Generated 2013-4-20 9:49:36 by Hibernate Tools 3.4.0.CR1
+// Generated 2013-4-26 9:38:33 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Calendar;
 

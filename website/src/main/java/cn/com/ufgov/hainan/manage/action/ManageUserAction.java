@@ -1,12 +1,15 @@
 package cn.com.ufgov.hainan.manage.action;
 
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
-
 import org.apache.struts2.json.annotations.JSON;
 
 import com.opensymphony.xwork2.ActionSupport;
+
+import cn.com.ufgov.hainan.framework.action.InitializeListener;
 import cn.com.ufgov.hainan.framework.action.ModuleAction;
+import cn.com.ufgov.hainan.framework.business.ResultType;
+import cn.com.ufgov.hainan.framework.utility.Security;
 import cn.com.ufgov.hainan.manage.module.ManageUser;
 import cn.com.ufgov.hainan.manage.service.ManageUserService;
 
@@ -42,6 +45,10 @@ public class ManageUserAction extends ModuleAction {
 
 	@Override
 	public void prepare() throws Exception {
+		if (this.strutsParameters.get("manageUser.prerogative") != null) {
+			System.out.println("#####" + this.strutsParameters.get("manageUser.prerogative")[0]);
+		}
+		this.removeNullBooleanParameter("manageUser.prerogative");
 	}
 
 	public String execute() throws Exception {
@@ -53,25 +60,75 @@ public class ManageUserAction extends ModuleAction {
 	public String executeQueryDataGrid() throws Exception {
 		String result = ModuleAction.JSON;
 
-		String hql = "";
-		List<Object> parameters = new ArrayList<Object>();
-
-		StringBuffer stringBuffer = new StringBuffer();
-		stringBuffer.append("from ManageUser as t where 1=1 ");
-		if (this.manageUser != null) {
-			if (this.manageUser.getName() != null) {
-				if (!this.manageUser.getName().isEmpty()) {
-					stringBuffer.append("and t.name = ?");
-					parameters.add(this.manageUser.getName());
-				}
-			}
-		}
-		hql = stringBuffer.toString();
-
-		this.manageUsers = this.manageUserService.select(this.paging, hql, parameters.toArray());
+		this.manageUsers = this.manageUserService.queryDataGrid(this.paging, this.manageUser);
 
 		this.dojoDataGrid.setIdentifier("uuid");
 		this.dojoDataGrid.setItems(this.manageUsers);
+
+		return result;
+	}
+	
+
+	public String executeInput() throws Exception {
+		String result = ModuleAction.INPUT;
+		return result;
+	}
+
+	public String executeSave() throws Exception {
+		String result = ModuleAction.JSON;
+
+		if (this.manageUser != null) {
+			if (this.manageUser.getUuid() != null) {
+				if (this.manageUser.getUuid().isEmpty()) {
+					this.manageUser.setUuid(null);
+				}
+			}
+
+			String md5Password = Security.md5(this.manageUser.getPassword());
+
+			String userId = (String) this.strutsSession.get(InitializeListener.SESSION_USER_ID);
+			Calendar now = Calendar.getInstance();
+			if (this.manageUser.getUuid() == null) {
+				this.manageUser.setInsertUserId(userId);
+				this.manageUser.setInsertTime(now);
+
+				this.manageUser.setPassword(md5Password);
+			} else {
+				ManageUser originalManageUser = this.manageUserService.select(this.manageUser.getUuid());
+				if (originalManageUser != null) {
+					this.manageUser.setInsertUserId(originalManageUser.getInsertUserId());
+					this.manageUser.setInsertTime(originalManageUser.getUpdateTime());
+
+					if (this.manageUser.getPassword() != null) {
+						if (!this.manageUser.getPassword().equals(originalManageUser.getPassword())) {
+							this.manageUser.setPassword(md5Password);
+						}
+					}
+				}
+			}
+			this.manageUser.setUpdateUserId(userId);
+			this.manageUser.setUpdateTime(now);
+
+			if (this.manageUser.getPrerogative() == null) {
+				this.manageUser.setPrerogative(false);
+			}
+
+			ResultType resultType = this.manageUserService.storage(this.manageUser);
+
+			this.processMessage(resultType);
+		}
+
+		return result;
+	}
+
+	public String executeDelete() throws Exception {
+		String result = ModuleAction.JSON;
+
+		if (this.manageUser != null) {
+			ResultType resultType = this.manageUserService.delete(this.manageUser.getUuid());
+
+			this.processMessage(resultType);
+		}
 
 		return result;
 	}
