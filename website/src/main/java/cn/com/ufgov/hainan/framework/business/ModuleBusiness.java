@@ -156,6 +156,7 @@ public abstract class ModuleBusiness<T> implements ModuleService<T> {
 			result = ResultType.HAS_SAME;
 		} else {
 			Session session = this.sessionFactory.openSession();
+
 			Transaction transaction = session.beginTransaction();
 			try {
 				transaction.begin();
@@ -182,6 +183,7 @@ public abstract class ModuleBusiness<T> implements ModuleService<T> {
 			result = ResultType.HAS_SAME;
 		} else {
 			Session session = this.sessionFactory.openSession();
+
 			Transaction transaction = session.beginTransaction();
 			try {
 				transaction.begin();
@@ -208,6 +210,7 @@ public abstract class ModuleBusiness<T> implements ModuleService<T> {
 			result = ResultType.HAS_SAME;
 		} else {
 			Session session = this.sessionFactory.openSession();
+
 			Transaction transaction = session.beginTransaction();
 			try {
 				transaction.begin();
@@ -242,6 +245,7 @@ public abstract class ModuleBusiness<T> implements ModuleService<T> {
 
 		if (!interrupt) {
 			Session session = this.sessionFactory.openSession();
+
 			Transaction transaction = session.beginTransaction();
 			try {
 				transaction.begin();

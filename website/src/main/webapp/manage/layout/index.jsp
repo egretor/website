@@ -24,10 +24,10 @@ html,body {
 }
 
 .catalogButton .dijitButtonNode {
-	width: 80px;
+	width: 60px;
 }
 
-#layoutDialog .dijitDialogPaneContent {
+#editDialog .dijitDialogPaneContent {
 	margin: 0px;
 	padding: 0px;
 }
@@ -36,9 +36,8 @@ html,body {
 <script type="text/javascript">
 	dojo.ready(function() {
 		framework.layout = {
-			currentTab : null,
 			leftZoom : function() {
-				var button = dijit.byId('leftZoom');
+				var button = framework.utility.dojo('leftZoom');
 				var iconClass = button.attr('iconClass');
 				if (iconClass == 'frameworkIconDisableLeft') {
 					button.attr('iconClass', 'frameworkIconEnableLeft');
@@ -49,10 +48,10 @@ html,body {
 					$('#layoutLeft').show();
 					$('#layoutLeftSeparator').show();
 				}
-				dijit.byId('borderContainer').layout();
+				framework.utility.dojo('borderContainer').layout();
 			},
 			topZoom : function() {
-				var button = dijit.byId('topZoom');
+				var button = framework.utility.dojo('topZoom');
 				var iconClass = button.attr('iconClass');
 				if (iconClass == 'frameworkIconDisableTop') {
 					button.attr('iconClass', 'frameworkIconEnableTop');
@@ -63,7 +62,7 @@ html,body {
 					$('#layoutTop').show();
 					$('#layoutTopSeparator').show();
 				}
-				dijit.byId('borderContainer').layout();
+				framework.utility.dojo('borderContainer').layout();
 			},
 			clickHomeCatalog : function() {
 				var id = $('#homeCatalog').attr('id');
@@ -77,20 +76,20 @@ html,body {
 			},
 			openTab : function(id, name, url, closable) {
 				id += 'Tab';
-				var tabContainer = dijit.byId('layoutCenter');
-				this.currentTab = dijit.byId(id);
-				if (!this.currentTab) {
-					this.currentTab = new dijit.layout.ContentPane({
+				var tabContainer = framework.utility.dojo('layoutCenter');
+				var currentTab = framework.utility.dojo(id);
+				if (!currentTab) {
+					currentTab = new dijit.layout.ContentPane({
 						id : id,
 						title : name,
 						closable : closable,
 						style : 'overflow: hidden; margin: 0px; padding: 0px',
 						content : framework.format.concat('<iframe name="[1]" src="[2]" style="width: 100%; height: 100%" frameborder="0"></iframe>', id, url)
 					});
-					tabContainer.addChild(this.currentTab);
+					tabContainer.addChild(currentTab);
 				}
 
-				tabContainer.selectChild(this.currentTab);
+				tabContainer.selectChild(currentTab);
 			},
 			clickLink : function() {
 				var linkId = this.id;
@@ -138,10 +137,11 @@ html,body {
 									content : linkContent
 								});
 
-								dijit.byId('layoutLeft').addChild(linkButton);
-								dijit.byId('layoutLeft').selectChild(linkButton);
+								framework.utility.dojo('layoutLeft').addChild(linkButton);
+								framework.utility.dojo('layoutLeft').selectChild(linkButton);
 							});
 
+							framework.utility.dojo('layoutLeft').layout();
 							$('.linkButton').click(framework.layout.clickLink);
 						}
 					}
@@ -156,6 +156,27 @@ html,body {
 					if (data) {
 						if (data.manageCatalogs) {
 							var firstCatalog = true;
+
+							if (data.manageCatalogs) {
+								data.manageCatalogs.sort(function(x, y) {
+									var result = 0;
+									if (x.serial > y.serial) {
+										result = 1;
+									}
+									if (x.serial < y.serial) {
+										result = -1;
+									}
+									if (result == 0){
+										if (x.name > y.name) {
+											result = 1;
+										}
+										if (x.name < y.name) {
+											result = -1;
+										}
+									}
+									return result;
+								});
+							}
 
 							dojo.forEach(data.manageCatalogs, function(manageCatalog) {
 								dojo.create('button', {
@@ -177,36 +198,6 @@ html,body {
 						}
 					}
 				});
-			},
-			refreshDialog : function(title, url) {
-				framework.utility.dojo('layoutDialog').attr('title', title + this.currentTab.id);
-				framework.utility.$('layoutDialogIframe').attr('src', url);
-
-				dojo.connect(framework.utility.dojo('layoutDialog'), 'onShow', function() {
-					var width = parseInt(parseInt($('#borderContainer').css('width')) * 0.8);
-					var height = parseInt(parseInt($('#borderContainer').css('height')) * 0.8);
-
-					$('#layoutDialogIframe').css('width', width);
-					$('#layoutDialogIframe').css('height', height);
-				});
-
-				$(window).resize(function() {
-					if (framework.utility.dojo('layoutDialog').open) {
-						var width = parseInt(parseInt($('#borderContainer').css('width')) * 0.8);
-						var height = parseInt(parseInt($('#borderContainer').css('height')) * 0.8);
-
-						/*
-						$('#layoutDialogIframe').css('width', width);
-						$('#layoutDialogIframe').css('height', height);
-						*/
-						framework.utility.dojo('layoutDialog').resize(null, framework.format.concat('{w:[1], h:[2]}', width, height));
-					}
-				});
-
-				framework.utility.dojo('layoutDialog').show();
-			},
-			closeDialog : function() {
-				framework.utility.dojo('layoutDialog').hide();
 			}
 		};
 
@@ -279,10 +270,6 @@ html,body {
 					data-dojo-props="iconClass:'frameworkIconDisableTop', showLabel:false"></div>
 			</div>
 		</div>
-
-		<div id="layoutDialog" data-dojo-type="dijit/Dialog" title="">
-			<iframe id="layoutDialogIframe" frameborder="0"
-				style="width: 100%; height: 100%"></iframe>
-		</div>
+	</div>
 </body>
 </html>

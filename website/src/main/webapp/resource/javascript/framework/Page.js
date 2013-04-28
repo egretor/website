@@ -100,15 +100,23 @@
 		},
 		_initializeForm : function() {
 			var jQueryForm = framework.utility.$(this.formId);
-			jQueryForm.append(framework.format.concat('<input type="hidden" name="[1]" value="1" />', this.currentPageInputName));
-			jQueryForm.append(framework.format.concat('<input type="hidden" name="[1]" value="1" />', this.pageCountInputName));
+
+			var currentPageInputHtmlFormat = '<input type="hidden" name="[1]" value="1" />';
+			var currentPageInputHtml = framework.format.concat(currentPageInputHtmlFormat, this.currentPageInputName);
+			jQueryForm.append(currentPageInputHtml);
+
+			var pageCountInputHtmlFormat = '<input type="hidden" name="[1]" value="1" />';
+			var pageCountInputHtml = framework.format.concat(pageCountInputHtmlFormat, this.pageCountInputName);
+			jQueryForm.append(pageCountInputHtml);
 		},
 		_initializeDataGrid : function() {
 			var jQueryDatagrid = framework.utility.$(this.dataGridId);
+
 			var outerWidth = parseInt(jQueryDatagrid.outerWidth());
 			var innerWidth = parseInt(jQueryDatagrid.innerWidth());
 			var bodyWidth = parseInt($('body').css('width'));
 			var dataGridWidth = bodyWidth - (outerWidth - innerWidth);
+
 			jQueryDatagrid.css('min-width', dataGridWidth);
 		},
 		_initializeOperationToolbar : function() {

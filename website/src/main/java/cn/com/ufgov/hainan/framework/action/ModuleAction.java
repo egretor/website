@@ -138,6 +138,9 @@ public abstract class ModuleAction implements ServletContextAware, ApplicationAw
 	 * Dojo数据表格
 	 */
 	protected DojoDataGrid dojoDataGrid;
+	/**
+	 * 消息
+	 */
 	protected String message;
 
 	@Override
@@ -204,6 +207,12 @@ public abstract class ModuleAction implements ServletContextAware, ApplicationAw
 		this.message = message;
 	}
 
+	/**
+	 * 移除空布尔值参数
+	 * 
+	 * @param key
+	 *            参数键
+	 */
 	public void removeNullBooleanParameter(String key) {
 		Object value = this.strutsParameters.get(key);
 		if (value != null) {
@@ -215,6 +224,12 @@ public abstract class ModuleAction implements ServletContextAware, ApplicationAw
 		}
 	}
 
+	/**
+	 * 处理消息
+	 * 
+	 * @param resultType
+	 *            结果类型
+	 */
 	public void processMessage(ResultType resultType) {
 		switch (resultType) {
 		case HAS_SAME:
@@ -228,6 +243,9 @@ public abstract class ModuleAction implements ServletContextAware, ApplicationAw
 			break;
 		case FAIL:
 			this.setMessage("数据操作失败！");
+			break;
+		case NONE:
+			this.setMessage("没有执行相关数据操作！");
 			break;
 		}
 	}

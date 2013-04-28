@@ -67,12 +67,6 @@ public class ManageUserAction extends ModuleAction {
 
 		return result;
 	}
-	
-
-	public String executeInput() throws Exception {
-		String result = ModuleAction.INPUT;
-		return result;
-	}
 
 	public String executeSave() throws Exception {
 		String result = ModuleAction.JSON;

@@ -37,5 +37,8 @@
 	} else {
 		window.framework.top = window;
 	}
-	window.framework.layout = window.framework.top.framework.layout;
+	
+	if (window !== window.framework.top){
+		window.framework.layout = window.framework.top.framework.layout;
+	}
 })(window);

@@ -19,5 +19,9 @@ public enum ResultType {
 	/**
 	 * 失败
 	 */
-	FAIL
+	FAIL,
+	/**
+	 * 无操作
+	 */
+	NONE
 }

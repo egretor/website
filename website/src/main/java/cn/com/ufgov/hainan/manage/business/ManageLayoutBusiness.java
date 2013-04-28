@@ -56,18 +56,23 @@ public class ManageLayoutBusiness implements ManageLayoutService {
 
 		ManageUser manageUser = this.manageUserService.select(userId);
 		if (manageUser != null) {
-			List<ManageCatalog> manageCatalogs = this.manageCatalogService.selectByUserId(userId);
-			if (manageCatalogs != null) {
-				results.addAll(manageCatalogs);
-			}
+			List<ManageCatalog> manageCatalogs = null;
 
 			if (manageUser.getPrerogative()) {
+				manageCatalogs = this.manageCatalogService.select();
+
 				ManageCatalog developManageCatalog = new ManageCatalog();
 
 				developManageCatalog.setUuid(ManageLayoutBusiness.DEVELOP_CATALOG_ID);
 				developManageCatalog.setName(ManageLayoutBusiness.DEVELOP_CATALOG_NAME);
+				developManageCatalog.setSerial(0L);
 
 				results.add(developManageCatalog);
+			} else {
+				manageCatalogs = this.manageCatalogService.selectByUserId(userId);
+			}
+			if (manageCatalogs != null) {
+				results.addAll(manageCatalogs);
 			}
 		}
 

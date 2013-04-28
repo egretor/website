@@ -82,8 +82,8 @@ public interface ModuleService<T> {
 	/**
 	 * 删除
 	 * 
-	 * @param value
-	 *            模块数据
+	 * @param uuid
+	 *            主键
 	 * @param cascade
 	 *            级联操作
 	 * @return 操作结果
@@ -93,8 +93,8 @@ public interface ModuleService<T> {
 	/**
 	 * 删除
 	 * 
-	 * @param value
-	 *            模块数据
+	 * @param uuid
+	 *            主键
 	 * @return 操作结果
 	 */
 	ResultType delete(String uuid);
@@ -111,8 +111,8 @@ public interface ModuleService<T> {
 	/**
 	 * 是否数据被引用
 	 * 
-	 * @param value
-	 *            模块数据
+	 * @param uuid
+	 *            主键
 	 * @return 结果
 	 */
 	boolean hasReference(String uuid);
@@ -120,8 +120,8 @@ public interface ModuleService<T> {
 	/**
 	 * 删除被引用数据
 	 * 
-	 * @param value
-	 *            模块数据
+	 * @param uuid
+	 *            主键
 	 * @return 结果
 	 */
 	boolean deleteReference(String uuid);

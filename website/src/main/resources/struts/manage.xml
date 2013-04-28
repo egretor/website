@@ -29,7 +29,6 @@
 		<action name="user"
 			class="cn.com.ufgov.hainan.manage.action.ManageUserAction">
 			<result name="success">/manage/user/index.jsp</result>
-			<result name="input">/manage/user/input.jsp</result>
 		</action>
 	</package>
 </struts>
